@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000"
+    android:padding="0dp">
+
+    <!-- خلفية متدرجة -->
+    <View
+        android:id="@+id/gradient_top"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="#33FF0000"
+        android:layout_alignParentTop="true" />
+
+    <!-- بطاقات خلفية (تأثير أفلام) -->
+    <LinearLayout
+        android:id="@+id/cards_row"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="60dp"
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <View android:layout_width="80dp" android:layout_height="120dp"
+            android:background="#44CC0000" android:layout_margin="4dp"
+            android:alpha="0.5"/>
+        <View android:layout_width="80dp" android:layout_height="140dp"
+            android:background="#44990099" android:layout_margin="4dp"
+            android:alpha="0.6"/>
+        <View android:layout_width="80dp" android:layout_height="160dp"
+            android:background="#44CC0000" android:layout_margin="4dp"/>
+        <View android:layout_width="80dp" android:layout_height="140dp"
+            android:background="#44009900" android:layout_margin="4dp"
+            android:alpha="0.6"/>
+        <View android:layout_width="80dp" android:layout_height="120dp"
+            android:background="#44CC6600" android:layout_margin="4dp"
+            android:alpha="0.5"/>
+    </LinearLayout>
+
+    <!-- تدرج فوق البطاقات -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="280dp"
+        android:layout_marginTop="40dp"
+        android:background="#CC000000" />
+
+    <!-- المحتوى الرئيسي -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerVertical="true"
+        android:padding="32dp">
+
+        <!-- أيقونة -->
+        <TextView
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:text="🎬"
+            android:textSize="48sp"
+            android:gravity="center"
+            android:background="#CC330000"
+            android:padding="8dp" />
+
+        <!-- اسم التطبيق -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="شوف"
+            android:textColor="#FFFFFF"
+            android:textSize="52sp"
+            android:textStyle="bold"
+            android:fontFamily="sans-serif-black"
+            android:layout_marginTop="16dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TV"
+            android:textColor="#FF3333"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:layout_marginTop="-8dp" />
+
+        <!-- وصف -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="شاهد آلاف المسلسلات والأنيميات
+بجودة عالية في أي مكان"
+            android:textColor="#99FFFFFF"
+            android:textSize="14sp"
+            android:gravity="center"
+            android:layout_marginTop="12dp" />
+    </LinearLayout>
+
+    <!-- الأزرار في الأسفل -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:padding="24dp"
+        android:paddingBottom="48dp">
+
+        <!-- زر البدء -->
+        <Button
+            android:id="@+id/btn_start"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="ابدأ المشاهدة مجاناً"
+            android:textColor="#FFFFFF"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:background="#FFCC0000"
+            android:layout_marginBottom="12dp" />
+
+        <!-- نص صغير -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="يتطلب حساب تيليجرام"
+            android:textColor="#44FFFFFF"
+            android:textSize="12sp" />
+
+    </LinearLayout>
+
+</RelativeLayout>

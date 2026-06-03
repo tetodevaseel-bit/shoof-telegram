@@ -679,12 +679,6 @@
 
     
         <activity
-            android:name=".ui.ShoofWebActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-
-        <activity
             android:name=".ui.ShoofSplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"

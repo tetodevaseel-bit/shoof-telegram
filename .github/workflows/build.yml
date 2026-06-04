@@ -1,9 +1,12 @@
-name: Build Shoof TV APK
+name: Build Shoof V4 APK
 
 on:
   push:
-    branches: [ master ]
+    branches: [ shoof-v4 ]
   workflow_dispatch:
+    inputs:
+      branch:
+        default: shoof-v4
 
 jobs:
   build:
@@ -11,59 +14,45 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: shoof-v4
           submodules: recursive
-
       - uses: actions/setup-java@v4
         with:
           java-version: '17'
           distribution: 'temurin'
-
       - uses: android-actions/setup-android@v3
-
       - name: Setup NDK
         run: |
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;21.4.7075529"
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/21.4.7075529" >> $GITHUB_ENV
-
       - name: Cache Gradle
         uses: actions/cache@v4
         with:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
-
-      - name: Cache ccache (C++ compilation cache)
+          key: ${{ runner.os }}-gradle-v4-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-v4-
+      - name: Cache ccache
         uses: actions/cache@v4
         with:
           path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ github.sha }}
-          restore-keys: ${{ runner.os }}-ccache-
-
+          key: ${{ runner.os }}-ccache-v4-${{ github.sha }}
+          restore-keys: ${{ runner.os }}-ccache-v4-
       - name: Setup ccache
         run: |
           sudo apt-get install -y ccache
           ccache --max-size=2G
-          ccache --zero-stats
-          echo "CC=ccache gcc" >> $GITHUB_ENV
-          echo "CXX=ccache g++" >> $GITHUB_ENV
           echo "NDK_CCACHE=ccache" >> $GITHUB_ENV
-
       - run: chmod +x gradlew
-
       - name: Build APK
         run: ./gradlew :TMessagesProj_App:assembleAfatDebug --no-daemon --build-cache
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
           GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
           NDK_CCACHE: ccache
-
-      - name: ccache stats
-        run: ccache --show-stats
-
       - uses: actions/upload-artifact@v4
         with:
-          name: shoof-tv-apk
+          name: shoof-v4-apk
           path: TMessagesProj_App/build/outputs/apk/**/*.apk
           retention-days: 30

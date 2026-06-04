@@ -697,19 +697,6 @@
             android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
 
-        <activity
-            android:name=".ui.ShoofPhoneActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
-
-        <activity
-            android:name=".ui.ShoofCodeActivity"
-            android:exported="false"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen" />
 
 </application>
 

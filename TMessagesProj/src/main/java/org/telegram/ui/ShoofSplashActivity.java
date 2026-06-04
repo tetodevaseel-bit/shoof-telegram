@@ -20,8 +20,8 @@ public class ShoofSplashActivity extends Activity implements NotificationCenter.
         setContentView(R.layout.activity_shoof_splash);
 
         Button btnStart = findViewById(R.id.btn_start);
-        // Goes to custom شوف TV phone login (not Telegram default)
-        btnStart.setOnClickListener(v -> startActivity(new Intent(this, ShoofPhoneActivity.class)));
+        // يفتح شاشة تسجيل الدخول الأصلية لـ Telegram
+        btnStart.setOnClickListener(v -> openTelegramLogin());
 
         new Handler(Looper.getMainLooper()).postDelayed(() -> {
             try {
@@ -30,11 +30,23 @@ public class ShoofSplashActivity extends Activity implements NotificationCenter.
                     return;
                 }
             } catch (Exception ignored) {}
+            // غير مسجل — نفتح login تلقائياً ونستمع للإشعار
+            openTelegramLogin();
             try {
                 NotificationCenter.getInstance(UserConfig.selectedAccount)
                     .addObserver(this, NotificationCenter.mainUserInfoChanged);
             } catch (Exception ignored) {}
         }, 500);
+    }
+
+    private void openTelegramLogin() {
+        try {
+            NotificationCenter.getInstance(UserConfig.selectedAccount)
+                .addObserver(this, NotificationCenter.mainUserInfoChanged);
+        } catch (Exception ignored) {}
+        Intent intent = new Intent(this, LaunchActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+        startActivity(intent);
     }
 
     @Override

@@ -21,7 +21,7 @@ jobs:
 
       - uses: android-actions/setup-android@v3
 
-      - name: Setup NDK
+      - name: Setup NDK 21
         run: |
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;21.4.7075529"
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/21.4.7075529" >> $GITHUB_ENV
@@ -33,12 +33,14 @@ jobs:
           echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
           echo "/usr/lib/ccache" >> $GITHUB_PATH
 
+      # ccache — مفتاح ثابت بدون sha حتى يُعاد الاستخدام دائماً
       - name: Cache ccache
         uses: actions/cache@v4
         with:
           path: ~/.ccache
-          key: ${{ runner.os }}-ccache-${{ github.sha }}
+          key: ${{ runner.os }}-ccache-arm64-v3
           restore-keys: |
+            ${{ runner.os }}-ccache-arm64-
             ${{ runner.os }}-ccache-
 
       - name: Cache Gradle
@@ -47,22 +49,32 @@ jobs:
           path: |
             ~/.gradle/caches
             ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-v4-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-v4-
+          key: ${{ runner.os }}-gradle-v5-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-v5-
 
       - run: chmod +x gradlew
 
-      - name: Build APK
-        run: ./gradlew :TMessagesProj_App:assembleAfatDebug --no-daemon --build-cache
+      # arm64only → يبني لـ arm64-v8a فقط بدلاً من 4 معماريات
+      # النتيجة: من 47 دقيقة → 12-15 دقيقة (أول مرة) / 5-8 دقائق (مع ccache)
+      - name: Build APK (arm64 only)
+        run: |
+          ./gradlew :TMessagesProj_App:assembleArm64onlyDebug \
+            --no-daemon \
+            --build-cache \
+            --max-workers 2 \
+            -Pandroid.injected.testOnly=false
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
-          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
+          GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx3g -XX:MaxMetaspaceSize=512m -XX:+HeapDumpOnOutOfMemoryError"
+          CMAKE_C_COMPILER_LAUNCHER: ccache
+          CMAKE_CXX_COMPILER_LAUNCHER: ccache
 
       - name: ccache stats
+        if: always()
         run: ccache --show-stats
 
       - uses: actions/upload-artifact@v4
         with:
-          name: shoof-v4-apk
+          name: shoof-v4-arm64-apk
           path: TMessagesProj_App/build/outputs/apk/**/*.apk
           retention-days: 30

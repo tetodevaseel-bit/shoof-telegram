@@ -146,7 +146,7 @@ public class ShoofPhoneActivity extends Activity {
     }
 
     private void sendCode() {
-        String phone = phoneField.getText().toString().trim().replaceAll("\s", "");
+        String phone = phoneField.getText().toString().trim().replace(" ", "").replace("-", "").replace("+", "");
         if (phone.isEmpty()) {
             statusText.setText("الرجاء إدخال رقم الهاتف");
             return;

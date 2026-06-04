@@ -51,7 +51,6 @@ public class ShoofSplashActivity extends Activity implements NotificationCenter.
             NotificationCenter.getInstance(UserConfig.selectedAccount)
                 .removeObserver(this, NotificationCenter.mainUserInfoChanged);
         } catch (Exception ignored) {}
-
         Intent intent = new Intent(this, LaunchActivity.class);
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(Uri.parse("tg://resolve?domain=Crepixbot"));

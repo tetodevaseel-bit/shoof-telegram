@@ -1,101 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#0A0A0A">
+    android:background="#050505">
 
-    <!-- خلفية: شبكة ملصقات أفلام -->
-    <LinearLayout
+    <!-- poster grid background (cinematic effect) -->
+    <GridLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:alpha="0.25">
+        android:columnCount="3"
+        android:alpha="0.18">
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#1a1a2e"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#16213e"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#0f3460"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#0f3460"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#1a1a2e"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#16213e"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#16213e"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#0f3460"/>
+        <View android:layout_width="0dp" android:layout_height="220dp" android:layout_columnWeight="1" android:background="#1a1a2e"/>
+    </GridLayout>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
-            android:layout_weight="1" android:orientation="horizontal">
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3A5C" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D1B3D" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3A2D" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3D2D1A" android:layout_margin="2dp"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
-            android:layout_weight="1" android:orientation="horizontal">
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D1A3A" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A2D3A" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3A2D1A" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3D2D" android:layout_margin="2dp"/>
-        </LinearLayout>
-        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
-            android:layout_weight="1" android:orientation="horizontal">
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2A1A3D" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3D2A1A" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A2A3D" android:layout_margin="2dp"/>
-            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D3A1A" android:layout_margin="2dp"/>
-        </LinearLayout>
-    </LinearLayout>
-
-    <!-- تدرج من الأسفل للأعلى -->
+    <!-- dark gradient overlay top-to-bottom -->
     <View
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#CC0A0A0A"
-        android:layout_gravity="bottom" />
+        android:background="#CC000000"/>
 
-    <!-- المحتوى الرئيسي -->
+    <!-- center content -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:gravity="center|bottom"
-        android:padding="28dp"
-        android:paddingBottom="60dp">
+        android:gravity="center"
+        android:padding="40dp">
 
-        <!-- شعار Telegram -->
+        <!-- Telegram logo circle -->
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="90dp"
+            android:layout_height="90dp"
             android:text="✈"
-            android:textSize="64sp"
-            android:textColor="#2AABEE"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="8dp" />
+            android:textSize="44sp"
+            android:gravity="center"
+            android:textColor="#FFFFFF"
+            android:background="#FF2CA5E0"
+            android:padding="10dp"/>
 
-        <!-- اسم التطبيق -->
+        <!-- App name -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Telegram"
             android:textColor="#FFFFFF"
-            android:textSize="42sp"
+            android:textSize="38sp"
             android:textStyle="bold"
             android:letterSpacing="0.02"
-            android:layout_gravity="center_horizontal" />
+            android:layout_marginTop="20dp"/>
 
-        <!-- شعار شوف -->
+        <!-- tagline -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="شوف"
-            android:textColor="#2AABEE"
-            android:textSize="22sp"
-            android:textStyle="bold"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="2dp" />
-
-        <!-- وصف -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="شاهد آلاف المسلسلات والأنيميات\nبجودة عالية في أي مكان"
+            android:text="شاهد • استمتع • اشترك"
             android:textColor="#99FFFFFF"
-            android:textSize="14sp"
+            android:textSize="15sp"
             android:gravity="center"
-            android:lineSpacingExtra="4dp"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="40dp" />
+            android:layout_marginTop="8dp"/>
 
-        <!-- زر ابدأ -->
+    </LinearLayout>
+
+    <!-- bottom section -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:padding="28dp"
+        android:paddingBottom="52dp">
+
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
@@ -104,18 +87,17 @@
             android:textColor="#FFFFFF"
             android:textSize="17sp"
             android:textStyle="bold"
-            android:background="#2AABEE"
-            android:layout_marginBottom="14dp" />
+            android:background="#FF2CA5E0"
+            android:layout_marginBottom="14dp"/>
 
-        <!-- نص صغير -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="يتطلب حساب تيليجرام"
+            android:layout_gravity="center"
+            android:text="سيطلب منك تسجيل دخول تيليجرام"
             android:textColor="#55FFFFFF"
-            android:textSize="12sp" />
+            android:textSize="12sp"/>
 
     </LinearLayout>
 
-</FrameLayout>
+</RelativeLayout>

@@ -26,14 +26,12 @@ jobs:
           echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager "ndk;21.4.7075529"
           echo "ANDROID_NDK_HOME=$ANDROID_HOME/ndk/21.4.7075529" >> $GITHUB_ENV
 
-      - name: Cache Gradle
-        uses: actions/cache@v4
-        with:
-          path: |
-            ~/.gradle/caches
-            ~/.gradle/wrapper
-          key: ${{ runner.os }}-gradle-${{ hashFiles('**/*.gradle*') }}
-          restore-keys: ${{ runner.os }}-gradle-
+      - name: Install ccache
+        run: |
+          sudo apt-get install -y ccache
+          ccache --max-size=5G
+          echo "CCACHE_DIR=$HOME/.ccache" >> $GITHUB_ENV
+          echo "/usr/lib/ccache" >> $GITHUB_PATH
 
       - name: Cache ccache
         uses: actions/cache@v4
@@ -43,12 +41,14 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-ccache-
 
-      - name: Setup ccache
-        run: |
-          sudo apt-get install -y ccache
-          ccache --max-size=2G
-          ccache --zero-stats
-          echo "NDK_CCACHE=ccache" >> $GITHUB_ENV
+      - name: Cache Gradle
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.gradle/caches
+            ~/.gradle/wrapper
+          key: ${{ runner.os }}-gradle-v4-${{ hashFiles('**/*.gradle*') }}
+          restore-keys: ${{ runner.os }}-gradle-v4-
 
       - run: chmod +x gradlew
 
@@ -57,7 +57,6 @@ jobs:
         env:
           ANDROID_NDK_HOME: ${{ env.ANDROID_NDK_HOME }}
           GRADLE_OPTS: "-Dorg.gradle.jvmargs=-Xmx4g"
-          NDK_CCACHE: ccache
 
       - name: ccache stats
         run: ccache --show-stats

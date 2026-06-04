@@ -1,131 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
-    android:padding="0dp">
+    android:background="#0A0A0A">
 
-    <!-- خلفية متدرجة -->
-    <View
-        android:id="@+id/gradient_top"
-        android:layout_width="match_parent"
-        android:layout_height="300dp"
-        android:background="#33FF0000"
-        android:layout_alignParentTop="true" />
-
-    <!-- بطاقات خلفية (تأثير أفلام) -->
+    <!-- خلفية: شبكة ملصقات أفلام -->
     <LinearLayout
-        android:id="@+id/cards_row"
         android:layout_width="match_parent"
-        android:layout_height="220dp"
-        android:layout_marginTop="60dp"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:alpha="0.25">
 
-        <View android:layout_width="80dp" android:layout_height="120dp"
-            android:background="#44CC0000" android:layout_margin="4dp"
-            android:alpha="0.5"/>
-        <View android:layout_width="80dp" android:layout_height="140dp"
-            android:background="#44990099" android:layout_margin="4dp"
-            android:alpha="0.6"/>
-        <View android:layout_width="80dp" android:layout_height="160dp"
-            android:background="#44CC0000" android:layout_margin="4dp"/>
-        <View android:layout_width="80dp" android:layout_height="140dp"
-            android:background="#44009900" android:layout_margin="4dp"
-            android:alpha="0.6"/>
-        <View android:layout_width="80dp" android:layout_height="120dp"
-            android:background="#44CC6600" android:layout_margin="4dp"
-            android:alpha="0.5"/>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:orientation="horizontal">
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3A5C" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D1B3D" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3A2D" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3D2D1A" android:layout_margin="2dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:orientation="horizontal">
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D1A3A" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A2D3A" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3A2D1A" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A3D2D" android:layout_margin="2dp"/>
+        </LinearLayout>
+        <LinearLayout android:layout_width="match_parent" android:layout_height="0dp"
+            android:layout_weight="1" android:orientation="horizontal">
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2A1A3D" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#3D2A1A" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#1A2A3D" android:layout_margin="2dp"/>
+            <View android:layout_width="0dp" android:layout_height="match_parent" android:layout_weight="1" android:background="#2D3A1A" android:layout_margin="2dp"/>
+        </LinearLayout>
     </LinearLayout>
 
-    <!-- تدرج فوق البطاقات -->
+    <!-- تدرج من الأسفل للأعلى -->
     <View
         android:layout_width="match_parent"
-        android:layout_height="280dp"
-        android:layout_marginTop="40dp"
-        android:background="#CC000000" />
+        android:layout_height="match_parent"
+        android:background="#CC0A0A0A"
+        android:layout_gravity="bottom" />
 
     <!-- المحتوى الرئيسي -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:gravity="center"
-        android:layout_centerVertical="true"
-        android:padding="32dp">
+        android:gravity="center|bottom"
+        android:padding="28dp"
+        android:paddingBottom="60dp">
 
-        <!-- أيقونة -->
+        <!-- شعار Telegram -->
         <TextView
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:text="🎬"
-            android:textSize="48sp"
-            android:gravity="center"
-            android:background="#CC330000"
-            android:padding="8dp" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="✈"
+            android:textSize="64sp"
+            android:textColor="#2AABEE"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="8dp" />
 
         <!-- اسم التطبيق -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="شوف"
+            android:text="Telegram"
             android:textColor="#FFFFFF"
-            android:textSize="52sp"
+            android:textSize="42sp"
             android:textStyle="bold"
-            android:fontFamily="sans-serif-black"
-            android:layout_marginTop="16dp" />
+            android:letterSpacing="0.02"
+            android:layout_gravity="center_horizontal" />
 
+        <!-- شعار شوف -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="TV"
-            android:textColor="#FF3333"
-            android:textSize="28sp"
+            android:text="شوف"
+            android:textColor="#2AABEE"
+            android:textSize="22sp"
             android:textStyle="bold"
-            android:layout_marginTop="-8dp" />
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="2dp" />
 
         <!-- وصف -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="شاهد آلاف المسلسلات والأنيميات
-بجودة عالية في أي مكان"
+            android:text="شاهد آلاف المسلسلات والأنيميات\nبجودة عالية في أي مكان"
             android:textColor="#99FFFFFF"
             android:textSize="14sp"
             android:gravity="center"
-            android:layout_marginTop="12dp" />
-    </LinearLayout>
+            android:lineSpacingExtra="4dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="40dp" />
 
-    <!-- الأزرار في الأسفل -->
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_alignParentBottom="true"
-        android:padding="24dp"
-        android:paddingBottom="48dp">
-
-        <!-- زر البدء -->
+        <!-- زر ابدأ -->
         <Button
             android:id="@+id/btn_start"
             android:layout_width="match_parent"
-            android:layout_height="56dp"
-            android:text="ابدأ المشاهدة مجاناً"
+            android:layout_height="54dp"
+            android:text="ابدأ المشاهدة"
             android:textColor="#FFFFFF"
-            android:textSize="16sp"
+            android:textSize="17sp"
             android:textStyle="bold"
-            android:background="#FFCC0000"
-            android:layout_marginBottom="12dp" />
+            android:background="#2AABEE"
+            android:layout_marginBottom="14dp" />
 
         <!-- نص صغير -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="center_horizontal"
             android:text="يتطلب حساب تيليجرام"
-            android:textColor="#44FFFFFF"
+            android:textColor="#55FFFFFF"
             android:textSize="12sp" />
 
     </LinearLayout>
 
-</RelativeLayout>
+</FrameLayout>
